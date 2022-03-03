@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string>
 using namespace std;
-void Arrayinput(int n, int a[]) //ввод
+void Arrayinput(int n, int a[]) //РІРІРѕРґ
 {
     cout << "Enter " << n << " numbers\n";
     for (int i = 0; i < n; i++)
@@ -14,7 +14,7 @@ void Arrayinput(int n, int a[]) //ввод
         a[i] = k;
     }
 }
-void Arrout(int n, int a[], int task, int newn) //вывод
+void Arrout(int n, int a[], int task, int newn) //РІС‹РІРѕРґ
 {
     if (task == 1)
         for (int i = 0; i < n; i++)
@@ -26,7 +26,7 @@ void Arrout(int n, int a[], int task, int newn) //вывод
         for (int i = 0; i < newn; i++)
             cout << a[i] << endl;
 }
-int maxim(int n, int a[]) //максимальное значение
+int maxim(int n, int a[]) //РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 {
     int maxc = 0;
     for (int i = 0; i < n; i++)
@@ -36,12 +36,12 @@ int maxim(int n, int a[]) //максимальное значение
     }
     return maxc;
 }
-void mirror(int n, int a[], int maxc) //нахождение числа с одинаковыми цифрами и добавление элемента
+void mirror(int n, int a[], int maxc) //РЅР°С…РѕР¶РґРµРЅРёРµ С‡РёСЃР»Р° СЃ РѕРґРёРЅР°РєРѕРІС‹РјРё С†РёС„СЂР°РјРё Рё РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 {
     int first, last;
     bool flag = false;
     first = -1;
-    last = -2;
+    last = -1;
     for (int i = 0; i < n; i++)
     {
         int mirror = a[i];
@@ -59,7 +59,7 @@ void mirror(int n, int a[], int maxc) //нахождение числа с одинаковыми цифрами и
                 realloc(a, sizeof(int) * (n + 1));
                 a[n + 1] = 0;
                 for (int j = n - 1; j > i; j--)
-                    swap(a[j + 1], a[j]); // смещение элементов
+                    swap(a[j + 1], a[j]); // СЃРјРµС‰РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ
                 a[i + 1] = maxc;
                 flag = true;
             }
@@ -67,7 +67,7 @@ void mirror(int n, int a[], int maxc) //нахождение числа с одинаковыми цифрами и
     }
     if (!flag) cout << "There is no numbers with the same first and last numbers\n";
 }
-int fibonaci(int n, int a[]) //нахождение и удаление чисел, составляющих ряд фибоначчи
+int fibonaci(int n, int a[]) //РЅР°С…РѕР¶РґРµРЅРёРµ Рё СѓРґР°Р»РµРЅРёРµ С‡РёСЃРµР», СЃРѕСЃС‚Р°РІР»СЏСЋС‰РёС… СЂСЏРґ С„РёР±РѕРЅР°С‡С‡Рё
 {
     int newn = n;
     for (int i = 0; i < n; i++)
@@ -104,21 +104,20 @@ int main()
     cout << "Enter natural size of massive\n";
     int n;
     bool nat = true;
-    while (nat) //проверка чтобы размер массива был натурального размера
+    while (nat)
     {
         cin >> n;
         if (n > 0)
             nat = false;
         else cout << "Invalid input, try again\n";
     }
-    int* a = (int*)malloc(n);
+    int* a = (int*)malloc(n*sizeof(int));
     for (int i = 0; i < n; i++)
     {
         a[i] = 0;
     }
     int task = 0;
     bool flag = false;
-    cout << "1. Find max number\n2. Insert max number after number with the same first and last digit\n3. Delete fibonacci numbers\n";
     cout << "Enter number of task (1-3)\n";
     while (!flag)
     {
@@ -141,5 +140,11 @@ int main()
     {
         Arrout(n, a, task, fibonaci(n, a));
     }
+    //free(a);
+    /*
+    string end;
+    cout << "enter any";
+    cin >> end;
+    */
 }
 
